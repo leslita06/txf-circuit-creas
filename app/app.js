@@ -80,7 +80,7 @@ function renderApercu(){
   $('#nb-rel').textContent=G.length||'';$('#nb-rel').style.display=G.length?'':'none';
   $('#phrase').innerHTML='<b>'+enc.length+' créations</b> en cours pour '+Object.keys(P.clients).length+' clients. <b>'+pl(nrel,'création')+'</b> attend'+(nrel>1?'ent':'')+' la réponse du client depuis plus de deux jours : '+pl(G.length,'relance')+' prête'+(G.length>1?'s':'')+'. <b>'+pl(P.tournages.length,'tournage')+'</b> la semaine prochaine, dont '+tbl.length+' à débloquer.';
   $('#float1').innerHTML='<p class="fl">Relances prêtes</p><p class="fv">'+G.length+'<small> client'+(G.length>1?'s':'')+'</small></p>';
-  $('#float2').innerHTML='<p class="fl">Prochain tournage</p><p class="fv sm">'+dcourt(P.tournages[0].d)+', '+hh(P.tournages[0].h[0])+'</p><p class="fs">'+P.clients[P.tournages[0].cl].nom+'</p>';
+  $('#float2').innerHTML='<p class="fl">Prochain tournage</p><p class="fv sm">'+dlong(P.tournages[0].d).replace(/^./,function(x){return x.toUpperCase()})+', '+hh(P.tournages[0].h[0])+'</p><p class="fs">'+P.clients[P.tournages[0].cl].nom+'</p>';
   var K=[
     ['images','Créations en cours',enc.length,'',S.creas.length-enc.length+' déjà livrées ce mois-ci','creas',''],
     ['badge-check','À valider en interne',interne,'',S.creas.filter(function(c){return c.e==='da'}).length+' chez la DA, '+S.creas.filter(function(c){return c.e==='cp'}).length+' chez le chef de projet','circuit',''],
