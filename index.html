@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#ffffff">
+<title>TX Factory, circuit de production des créations</title>
+<link rel="icon" href="assets/factory.png">
+<link rel="stylesheet" href="app/app.css?v=20261120f">
+</head>
+<body>
+<header class="top">
+  <div class="wrap th">
+    <a class="brand" href="#apercu"><img src="assets/factory.png" alt="TX Factory, Totem Experience"></a>
+    <div class="th-r">
+      <p class="eyebrow">Circuit de production</p>
+      <p class="today"><i class="ic" data-ic="calendar"></i><span id="today"></span></p>
+    </div>
+  </div>
+  <nav class="tabs-w"><div class="wrap tabs" id="tabs">
+    <a class="tb" data-v="apercu"><i class="ic" data-ic="layout-dashboard"></i>Vue d'ensemble</a>
+    <a class="tb" data-v="creas"><i class="ic" data-ic="images"></i>Créations</a>
+    <a class="tb" data-v="circuit"><i class="ic" data-ic="square-kanban"></i>Circuit de validation</a>
+    <a class="tb" data-v="relances"><i class="ic" data-ic="refresh-cw"></i>Relances <b class="cnt" id="nb-rel"></b></a>
+    <a class="tb" data-v="tournages"><i class="ic" data-ic="clapperboard"></i>Tournages</a>
+    <a class="tb" data-v="clickup"><i class="ic" data-ic="arrow-right-left"></i>Avec ClickUp</a>
+  </div></nav>
+</header>
+
+<main class="wrap">
+
+<!-- VUE D'ENSEMBLE -->
+<section class="view" id="v-apercu">
+  <div class="hero">
+    <div class="hero-t">
+      <p class="kicker">TX Factory</p>
+      <h1>Chaque création,<br>de la V1 au <span class="hl">client</span>.</h1>
+      <p class="lead" id="phrase"></p>
+      <div class="hero-cta"><a class="btn dark" href="#relances" data-go="relances"><i class="ic" data-ic="send"></i>Voir les relances prêtes</a><a class="btn" href="#tournages" data-go="tournages"><i class="ic" data-ic="clapperboard"></i>Tournages de la semaine</a></div>
+    </div>
+    <div class="hero-img"><img src="assets/img/DSC04101.jpg" alt="Prise de parole devant un écran de contenus"><div class="float f1" id="float1"></div><div class="float f2" id="float2"></div></div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="block">
+    <div class="bh"><h2>Où en est la production</h2><p class="hint">Toutes les créations, par étape du circuit</p></div>
+    <div class="flow" id="flow"></div>
+  </section>
+
+  <div class="g2">
+    <section class="block">
+      <div class="bh"><h2>À traiter aujourd'hui</h2><p class="hint">Les urgences d'abord</p></div>
+      <div id="todo"></div>
+    </section>
+    <section class="block">
+      <div class="bh"><h2>Par client et par format</h2><p class="hint">Créations en cours, hors livrées</p></div>
+      <div class="mx-w"><table class="mx" id="mx"></table></div>
+    </section>
+  </div>
+
+  <section class="cu-box" id="cu-mini"></section>
+</section>
+
+<!-- CRÉATIONS -->
+<section class="view" id="v-creas">
+  <div class="intro"><h1>Créations</h1><p>Toutes les créations au même endroit, classées par client et par format. Chaque carte montre sa version et l'étape où elle attend.</p></div>
+  <div class="filters">
+    <div class="chips" id="f-cl"></div>
+    <div class="chips" id="f-ty"></div>
+    <label class="sw"><input type="checkbox" id="f-liv"><span>Afficher les livrées</span></label>
+  </div>
+  <div class="gal" id="gal"></div>
+</section>
+
+<!-- CIRCUIT -->
+<section class="view" id="v-circuit">
+  <div class="intro"><h1>Circuit de validation</h1><p>Directrice artistique, puis chef de projet, puis client. <b>Valider</b> fait avancer la carte. <b>Retour</b> la renvoie en création et ouvre la version suivante. On peut aussi glisser une carte par sa poignée.</p></div>
+  <div class="toolbar"><div class="chips" id="k-cl"></div><span class="sp"></span><button class="btn sm" data-reset><i class="ic" data-ic="rotate-ccw"></i>Revenir à l'exemple</button></div>
+  <div class="kb-w"><div class="kb" id="kb"></div></div>
+</section>
+
+<!-- RELANCES -->
+<section class="view" id="v-relances">
+  <div class="intro"><h1>Relances clients</h1><p>Une création attend le client depuis plus de deux jours ouvrés : le message de relance est déjà écrit, par client, avec la liste de ce qui attend. Vous le copiez ou l'ouvrez dans votre messagerie. <b>Rien ne part sans vous.</b></p></div>
+  <div class="rsum" id="rsum"></div>
+  <div id="rel"></div>
+</section>
+
+<!-- TOURNAGES -->
+<section class="view" id="v-tournages">
+  <div class="intro"><h1>Tournages de la semaine</h1><p>Du lundi 23 au samedi 28 novembre : qui tourne, où, avec quel matériel. Les conflits de matériel et ce qui manque pour tourner sont repérés seuls.</p></div>
+  <div class="talert" id="talert"></div>
+  <div class="week" id="week"></div>
+  <section class="block">
+    <div class="bh"><h2>Matériel réservé</h2><p class="hint">Un même équipement sur deux tournages au même moment apparaît en rouge</p></div>
+    <div class="mat-w"><table class="mat" id="mat"></table></div>
+  </section>
+</section>
+
+<!-- CLICKUP -->
+<section class="view" id="v-clickup">
+  <div class="intro"><h1>Avec ClickUp, pas à la place</h1><p>ClickUp reste l'outil des tâches. Ce circuit lit ce qui y est déjà et ajoute ce qui y manque pour la création : les versions, les avis, la relance du client et les tournages.</p></div>
+  <div class="cu-full" id="cu-full"></div>
+</section>
+
+</main>
+
+<footer class="foot"><div class="wrap">
+  <p><img src="assets/factory.png" alt="" class="flogo"></p>
+  <p class="small">Clients, créations, personnes et dates d'illustration, pour montrer le fonctionnement. Vos changements restent dans ce navigateur. <a href="#" data-reset>Revenir à l'exemple</a></p>
+</div></footer>
+
+<div class="drawer" id="drawer" aria-hidden="true"><div class="dr-bg" data-close></div><aside class="dr" role="dialog" aria-label="Détail de la création"><button class="x" data-close aria-label="Fermer"><i class="ic" data-ic="x"></i></button><div id="dr-c"></div></aside></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app/data.js?v=20261120f"></script>
+<script src="app/app.js?v=20261120f"></script>
+</body>
+</html>
